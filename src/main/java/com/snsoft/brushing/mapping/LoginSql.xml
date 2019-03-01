@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16计算机弓耀 
+	* 
+	* @version 1.0 
+	* 
+	* @date 2018年9月19日下午10:51:46 
+	* 
+	* @Description TODO 
+	*  	登录接口SqlMapping 
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.LoginDao">
+	<!-- 用户名查询用户 -->
+	<select id="getUser" resultType="com.snsoft.brushing.pojo.User">
+		SELECT
+		*
+		FROM
+		t_user
+		WHERE
+		u_account = #{account};
+	</select>
+	
+	<!-- 更新用户密码 -->
+	<select id="updatePass">
+		UPDATE 
+			t_user	
+		SET 
+			u_password = #{password}
+		WHERE
+			u_account = #{account};
+	</select>
+
+	<!-- 获取用户名字 -->
+	<select id="getName" resultType="String">
+		SELECT 
+			un_name 
+		FROM 
+			t_username 
+		WHERE 
+			un_account = #{account}; 
+	</select>
+
+	<!-- 写入用户 -->
+	<select id="addUser">
+		INSERT INTO t_user
+		(
+		u_account,
+		u_password,
+		u_name,
+		u_star,
+		u_create,
+		u_modified
+		)
+		VALUES
+		(
+		#{u_account},
+		#{u_password},
+		#{u_name},
+		#{u_star},
+		#{u_create},
+		#{u_modified}
+		)
+	</select>
+	<!-- 写入登录记录表 -->
+	<insert id="writeLoginLog" parameterType="com.snsoft.brushing.pojo.Loginlog"  useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_loginlog
+		(
+		lg_account,
+		lg_logintime,
+		lg_ip
+		)
+		VALUES
+		(
+		#{lg_account},
+		#{lg_logintime},
+		#{lg_ip}
+		)
+	</insert>
+</mapper>

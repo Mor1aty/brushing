@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/**
+ * 
+ * @copyright ：神农大学生软件创新中心 版权所有 © 2018
+ * 
+ * @author 16计算机弓耀
+ * 
+ * @version 1.0
+ * 
+ * @date 2018年10月26日下午6:45:50
+ * 
+ * @Description TODO 
+ *	统计所有用户接口SqlMapping
+ */ -->
+<mapper namespace="com.snsoft.brushing.dao.CountAllUserDao">
+	<!-- 获取所有用户 -->
+	<select id = "getAllUser" resultType="com.snsoft.brushing.pojo.User">
+		SELECT
+			u_account,
+			u_name,
+			u_identity,
+			u_star
+		FROM
+			t_user;
+	</select>
+</mapper>

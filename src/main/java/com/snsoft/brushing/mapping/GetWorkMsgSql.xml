@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16信息潘鹏程
+	* 
+	* @version 1.0 
+	* 
+	* @date Sep 23, 2018 2:40:30 AM 
+	* 
+	* @Description TODO 提交答题信息Mapping
+	*  	
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.GetWorkMsgDao">
+	<update id="subExercise" parameterType="java.util.Map">
+		update 
+			t_examlog
+		set 
+			el_account = #{el_account},
+			el_sub = now(),
+			el_score = #{el_score}
+		where 
+			id = #{id}
+	</update>
+
+	<insert id="insertUq" parameterType="java.util.List" >
+  		insert into 
+  			t_uq (uq_account, id, uq_create, uq_modified)
+   		values
+			<foreach collection="list" item="it" separator=",">
+				(#{it.uq_account}, #{it.id}, now(), now())
+    		</foreach>
+	</insert>
+	
+	<select id="getUq" resultType="com.snsoft.brushing.pojo.UncorrectQuestion">
+		select uq_account,id from t_uq where
+			uq_account = #{account} and id = #{id}
+	</select>
+</mapper>

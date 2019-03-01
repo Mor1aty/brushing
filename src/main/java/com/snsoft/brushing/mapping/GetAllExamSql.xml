@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+/**
+ * 
+ * @copyright ：神农大学生软件创新中心 版权所有 © 2018
+ * 
+ * @author 16计算机弓耀
+ * 
+ * @version 1.0
+ * 
+ * @date 2018年9月23日上午11:33:13
+ * 
+ * @Description TODO 
+ *	查看所有考试接口SqlMapping
+ */ -->
+<mapper namespace="com.snsoft.brushing.dao.GetAllExamDao">
+	<!-- 获取所有考试 -->
+	<select id="getAllExam" resultType="com.snsoft.brushing.pojo.Paper">
+		SELECT 
+			*
+		FROM 
+			t_paper;
+	</select>
+</mapper>

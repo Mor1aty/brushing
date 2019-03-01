@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+/**
+ * 
+ * @copyright ：神农大学生软件创新中心 版权所有 © 2018
+ * 
+ * @author 16计算机弓耀
+ * 
+ * @version 1.0
+ * 
+ * @date 2018年9月30日下午7:19:40
+ * 
+ * @Description TODO 
+ *	获取所有语言接口SqlMapping
+ */ -->
+<mapper namespace="com.snsoft.brushing.dao.GetAllLanguageDao">
+	<!-- 获取所有语言 -->
+	<select id="getAllLanguage" resultType="com.snsoft.brushing.pojo.Language">
+		SELECT
+			*
+		FROM
+			t_language;
+	</select>
+</mapper>

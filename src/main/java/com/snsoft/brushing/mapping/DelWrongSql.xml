@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16信息潘鹏程
+	* 
+	* @version 1.0 
+	* 
+	* @date Sep 23, 2018 8:41:20 PM 
+	* 
+	* @Description TODO 删除错题Mapping
+	*  	
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.DelWrongDao">
+	<delete id="delWrong" parameterType="java.util.Map">
+		delete from
+			t_uq
+		where 
+			id = #{id} and uq_account = #{uq_account}
+	</delete>
+</mapper>

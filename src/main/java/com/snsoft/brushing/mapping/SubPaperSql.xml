@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16信息潘鹏程
+	* 
+	* @version 1.0 
+	* 
+	* @date Sep 23, 2018 7:21:45 PM 
+	* 
+	* @Description TODO 获取考试信息Mapping
+	*  	
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.SubPaperDao">
+	<insert id="insertTestPaper" parameterType="java.util.Map">
+		insert into 
+			t_testpaper (
+				id,
+				tp_account,
+				tp_choice,
+				tp_choice_answer,
+				tp_completion,
+				tp_completion_answer,
+				tp_saq,
+				tp_saq_answer,
+				tp_sub,
+				tp_author)
+		values(
+			#{id},
+			#{tp_account},
+			#{tp_choice},
+			#{tp_choice_answer},
+			#{tp_completion},
+			#{tp_completion_answer},
+			#{tp_saq},
+			#{tp_saq_answer},
+			#{tp_sub},
+			#{tp_author}
+		)
+	</insert>
+</mapper>

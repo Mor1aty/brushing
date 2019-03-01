@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+/**
+ * 
+ * @copyright ：神农大学生软件创新中心 版权所有 © 2018
+ * 
+ * @author 16计算机弓耀
+ * 
+ * @version 1.0
+ * 
+ * @date 2018年9月22日下午6:13:38
+ * 
+ * @Description TODO 
+ *	注销接口SqlMapping
+ */ -->
+<mapper namespace="com.snsoft.brushing.dao.LogoutDao">
+	<!-- 完善登录记录表注销时间 -->
+	<select id="writeLogout">
+		UPDATE 
+			t_loginlog
+		SET 
+			lg_logouttime = #{time}
+		WHERE
+			id = #{id};
+	</select>
+</mapper>

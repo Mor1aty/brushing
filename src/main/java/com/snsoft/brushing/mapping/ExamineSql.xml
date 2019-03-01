@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+/**
+ * 
+ * @copyright ：神农大学生软件创新中心 版权所有 © 2018
+ * 
+ * @author 16计算机弓耀
+ * 
+ * @version 1.0
+ * 
+ * @date 2018年9月28日上午8:41:06
+ * 
+ * @Description TODO 
+ *	审核试卷接口SqlMapping
+ */ -->
+<mapper namespace="com.snsoft.brushing.dao.ExamineDao">
+	<!-- 完善试卷表分数 -->
+	<select id="writeTestPaperScore">
+		UPDATE 
+			t_testpaper
+		SET 
+			tp_score = #{score}
+		WHERE
+			id = #{id};
+	</select>
+	
+	<!-- 增加分数 -->
+	<select id="addscore">
+		UPDATE 
+			t_user
+		SET 
+			u_star = u_star + #{score}
+		WHERE
+			u_account = #{account};
+	</select>
+</mapper>

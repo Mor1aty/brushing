@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16信息潘鹏程
+	* 
+	* @version 1.0 
+	* 
+	* @date Sep 23, 2018 9:21:45 AM 
+	* 
+	* @Description TODO 获取考试信息Mapping
+	*  	
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.GetExamMsgDao">
+	<select id="getData" resultType="java.util.Map">
+	SELECT
+		t_paper.id,
+		t_paper.p_author,
+		t_paper.p_frequency,
+		t_paper.p_language,
+		t_paper.p_describe,
+		t_paper.p_start,
+		t_user.u_name
+	FROM
+		t_paper,
+		t_user
+	WHERE
+		t_user.u_account = t_paper.p_author 
+	AND 
+		p_sign = 0
+	</select>
+</mapper>

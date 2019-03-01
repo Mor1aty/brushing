@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+/**
+ * 
+ * @copyright ：神农大学生软件创新中心 版权所有 © 2018
+ * 
+ * @author 16计算机弓耀
+ * 
+ * @version 1.0
+ * 
+ * @date 2018年9月27日下午9:54:51
+ * 
+ * @Description TODO 
+ *	获取试卷详细信息接口SqlMapping
+ */ -->
+<mapper namespace="com.snsoft.brushing.dao.GetPaperMsgDao">
+	<!-- 获取试卷信息 -->
+	<select id="getPaperMsg" resultType="java.util.HashMap">
+		SELECT
+			tp.id,
+			tp.tp_account,
+			u.u_name,
+			tp.tp_choice,
+			tp.tp_choice_answer,
+			tp.tp_completion,
+			tp.tp_completion_answer,
+			tp.tp_saq,
+			tp.tp_saq_answer,
+			tp.tp_sub
+		FROM
+			t_testpaper tp
+		LEFT JOIN t_user u ON tp.tp_account = u.u_account
+		WHERE
+			id = #{id};
+	</select>
+	
+	<!-- 获取选择题 -->
+	<select id="getChoice" resultType="java.util.HashMap">
+		SELECT
+			q.q_title,
+			q.q_option,
+			q.q_answer,
+			q.q_analysis,
+			a.a_position AS q_attach
+		FROM
+			t_question q
+		LEFT JOIN t_attach a ON q.q_attach = a.id
+		WHERE
+			q.id = #{id};
+	</select>
+	
+	<!-- 获取简答和填空题 -->
+	<select id="getCompletionAndSap" resultType="java.util.HashMap">
+		SELECT
+			q.q_title,
+			q.q_answer,
+			q.q_analysis,
+			a.a_position AS q_attach
+		FROM
+			t_question q
+		LEFT JOIN t_attach a ON q.q_attach = a.id
+		WHERE
+			q.id = #{id};
+	</select>
+</mapper>

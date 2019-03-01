@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16信息潘鹏程
+	* 
+	* @version 1.0 
+	* 
+	* @date Sep 23, 2018 7:30:12 PM 
+	* 
+	* @Description TODO 根据id、用户账号获取试卷Mapping
+	*  	
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.GetPaperExistDao">
+	<select id="getPaperExist" parameterType="java.util.Map" resultType="java.util.Map">
+		select 
+			*
+		from 
+			t_testpaper
+		where id = #{id} and tp_account = #{tp_account}
+	</select>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	/** 
+	* 
+	* @copyright ：神农大学生软件创新中心 版权所有 © 2018 
+	* 
+	* @author 16信息潘鹏程
+	* 
+	* @version 1.0 
+	* 
+	* @date Sep 23, 2018 10:00:45 AM 
+	* 
+	* @Description TODO 获取套题Mapping
+	*  	
+	*/ -->
+<mapper namespace="com.snsoft.brushing.dao.GetPaperDao">
+	<!-- 获取10道选择题，参数为语言名 -->
+	<select id="getChoices" parameterType="java.lang.String" resultType="com.snsoft.brushing.pojo.Question">
+		SELECT 
+			* 
+		FROM
+			(select * from 
+				t_question 
+			where 
+				q_language = #{value} and q_type = 0 ) q1
+		where 
+			id >= 
+				(select floor( rand() * ( select max( id ) from t_question q2 )))
+		order by id limit 10;
+	</select>
+	
+	<!-- 获取5道填空题，参数为语言名 -->	
+	<select id="getCompletions" parameterType="java.lang.String" resultType="com.snsoft.brushing.pojo.Question">
+		SELECT 
+			* 
+		FROM
+			(select * from 
+				t_question 
+			where 
+				q_language = #{value} and q_type = 1 ) q1
+		where 
+			id >= 
+				(select floor( rand() * ( select max( id ) from t_question q2 )))
+		order by id limit 5;
+	</select>
+	
+	<!-- 获取5道简答题，参数为语言名 -->
+	<select id="getSaqs" parameterType="java.lang.String" resultType="com.snsoft.brushing.pojo.Question">
+		SELECT 
+			* 
+		FROM
+			(select * from 
+				t_question 
+			where 
+				q_language = #{value} and q_type = 2 ) q1
+		where 
+			id >= 
+				(select floor( rand() * ( select max( id ) from t_question q2 )))
+		order by id limit 5;
+	</select>
+	
+	<!-- 向t_examlog插入一条记录 -->
+	<insert id="insertExamLog" parameterType="com.snsoft.brushing.pojo.ExamLog" useGeneratedKeys="true" keyProperty = "id">
+		insert into 
+			t_examlog
+		values(
+			#{id},
+			#{el_account},
+			#{el_start},
+			#{el_sub},
+			#{el_score},
+			#{el_ip},
+			#{el_language}
+		)
+	</insert>
+</mapper>
