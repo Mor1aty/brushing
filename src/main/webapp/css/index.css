@@ -1,0 +1,30 @@
+body{
+    		background-color: #000000;
+    	}
+    	.mui-off-canvas-wrap{
+    		max-width: 720px;
+    		margin: 0 auto;
+    	}
+    	.title {
+			margin: 35px 15px 10px;
+			color: #e9f0f3;
+		}
+		
+		.title+.content {
+			margin: 10px 15px 35px;
+			color: #bbb;
+			text-indent: 1em;
+			font-size: 14px;
+			line-height: 24px;
+		}
+		
+		.mui-table-view {
+			margin-bottom: 35px;
+		}
+		#iFrame{
+			width: 100%;
+			height: 100%;
+		}
+		#submit{
+			display: none;
+		}

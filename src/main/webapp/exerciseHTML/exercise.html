@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link href="../css/mui.min.css" rel="stylesheet" />
+<script src="../js/storeData.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/exercise.css" />
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<button id="back" type="button"
+			class="mui-left mui-btn mui-btn-link mui-btn-nav mui-pull-left">
+			<span class="mui-icon mui-icon-left-nav"></span>退出
+		</button>
+		<h1 class="mui-center mui-title">练习模式</h1>
+	</header>
+	<div style="margin-left: 20px; margin-top: 60px;" id="load">试题正在加载中，请稍候。。。</div>
+	<div style="margin-top: 60px;">
+		<div id="cc" style="display: none;">
+			<div class='mui-content' id="question">
+				<div class='mui-card'>
+					<div class='mui-card-header' id = "title"></div>
+					<div class='mui-card-header' id="options"></div>
+					<div class='mui-card-footer'>
+						<button type="button" class="mui-btn mui-btn-outlined" id="last" onclick="change(0)">上一题</button>
+						<button type="button" class="mui-btn mui-btn-outlined" id="next" onclick="change(1)">下一题</button>
+					</div>
+				</div>
+			</div>
+			<div class='mui-content' style="display: none;" id="final">
+				<div class='mui-card'>
+					<div class='mui-card-header' id = "answer"></div>
+					<div class='mui-card-header' id = "analysis"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/exercise.js"></script>
+</body>
+
+</html>

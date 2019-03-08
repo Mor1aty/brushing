@@ -1,0 +1,51 @@
+html,body {
+				background-color: #efeff4;
+			}
+			.mui-radio input[type=radio]{
+				bottom: 5px;
+			}
+			.mui-radio input[type=radio]:before{
+				font-size: 23px !important;
+				margin-left: 5px;
+			}
+			.mui-radio.mui-left label {
+				padding-left: 54px;
+			}
+
+			label{
+				font-size: medium;
+			}
+			.mui-h5, h5{
+				font-size: 17px;
+			}
+			.form{
+				margin: 0px 5px 0px 5px;
+			}
+			.form1{
+				margin: 10px 15px 10px 15px;
+			}
+			.answer{
+				font-family: "仿宋";
+				font-size: medium;
+				margin: 0px 5px 10px 5px;
+				display: none;
+			}
+			textarea{
+			    border: 0.5;
+			  	background-color: transparent;
+			  	scrollbar-arrow-color: yellow;
+			  	scrollbar-base-color: lightsalmon;
+			  	overflow: hidden;
+			  	color: #666464;
+			  	height: auto;
+			  	font-size: medium;
+			}
+			.mui-input-row label{
+				padding-top: 7px !important;
+				padding-bottom: 7px !important;
+			}
+			.choose,
+			.Non-choose{
+				margin-top: 20px;
+			}
+			

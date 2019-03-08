@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>关于我们</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			
+			.mui-content img{
+				width: 100%;
+			}
+			.hm-description{
+				margin: 15px;
+			}
+			
+			.hm-description>li {
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!--静态图片-->
+			<img id="img1" src="../img/snsoft.jpg"/>
+			<p style="margin: 30px 15px 20px;">本软件由神农软件团队开发
+			</p>
+			<p style="margin: 5px 15px 15px 15px;">
+				后端：Moriaty、Popcorn
+			</p>
+			<p style="margin: 5px 15px 15px 15px;">
+				前端：cody-chan
+			</p>
+			<p style="margin: 5px 15px 15px 15px;">
+				地址：现代教育信息中心神农软件团队
+			</p>
+			<p style="margin: 5px 15px 15px 15px;">
+				联系电话：待定
+			</p>
+			<p style="margin: 5px 15px 15px 15px;">
+				邮箱：待定
+			</p>
+			<form class="mui-input-group" style="margin-bottom: 300px; display: none;">
+				<div class="mui-input-row mui-radio">
+					<label>静态图片</label>
+					<input name="style" type="radio" checked value="static">
+				</div>
+			</form>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: false //启用右滑关闭功能
+			});
+			var slider = document.getElementById("slider");
+			mui('.mui-input-group').on('change', 'input', function() {
+				if (this.checked) {
+					switch (this.value) {
+						case 'static':
+							document.getElementById("img1").className = "";
+							document.getElementById("slider").classList.add("mui-hidden");
+							break;
+					}
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/storeData.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/exam.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>退出
+			</button>
+			<button id="finish" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">交卷</button>
+			<h1 class="mui-center mui-title">考试模式</h1>
+		</header>
+		<div class="mui-content">
+         	<div class="choose">
+            	<h5 class="mui-content-padded" id="title"></h5>
+				<form class="form"></form>
+				<div class="answer"></div>
+			</div>
+			<div class="Non-choose">
+				<h5 class="mui-content-padded" id="title1"></h5>
+				<form class="form1">
+					<textarea onkeypress="displayResult();" id="textArea" rows="3" placeholder="在此处填写答案..." autofocus="autofocus"></textarea>
+				</form>
+				<div class="answer"></div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/exam.js"></script>
+	</body>
+
+</html>

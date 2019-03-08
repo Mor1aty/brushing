@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/storeData.js"></script>
+		<style type="text/css">
+			html,body {
+				background-color: #efeff4;
+			}
+			.picture{
+				background-color: #3F72AF;
+				width: 100%;
+				height: 200px;
+				position: relative;
+			}
+			.image{
+				width: 100px;
+				height: 100px;
+				border-radius: 50px;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.pictureText{
+				text-align: center;
+				line-height: 30px;
+				height: 30px;
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				background-color: #DBE2EF;
+			}
+			#UL1,#UL2,
+			#UL3{
+				margin-bottom: 20px;
+			}
+			label{
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="picture">
+				<img class="image" id="image" src="../img/Client.png"/>
+				<div class="pictureText">
+					<label for="" id="pictureText"></label>
+				</div>
+			</div>
+			<ul class="mui-table-view mui-table-view-chevron" id="UL1">
+				<li class="mui-table-view-cell">
+					<a>
+						用户身份：
+						<span id="status"></span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>
+						用户分数：
+						<span id="grade"></span>
+					</a>
+				</li>
+				<li  class="mui-table-view-cell">
+					<a id="version" class="mui-navigate-right">版本控制<i class="mui-badge mui-badge-success">最新</i></a>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-table-view-chevron" id="UL2">
+				<li id="about" class="mui-table-view-cell">
+					<a class="mui-navigate-right">当前版本 <i class="mui-pull-right update">V1.0.1</i></a>
+				</li>
+			</ul>
+			<ul class="mui-table-view" id="UL3">
+				<li  class="mui-table-view-cell" style="text-align: center;">
+					<a type="button" id="exit">注销登录</a>
+				</li>
+			</ul>
+		</div>	
+	</body>
+	<script type="text/javascript" src="../js/mui.min.js" ></script>
+	<script type="text/javascript">
+		var user = JSON.parse(localStorage.getItem("user"));
+		var account = user.account;
+		var btnArray = ['取消', '确定'];  
+		//注销登录
+		document.getElementById("exit").addEventListener('tap', function() {
+			mui.confirm('您确定要注销登录吗？',"提示",btnArray,function(e){
+				if(e.index == 1){
+					//注销登录处理逻辑
+					mui.ajax(baseURL+'logout.do',{
+						data:{
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'get',//HTTP请求类型
+						success:function(succ){
+							if(succ.code === 0){
+								localStorage.removeItem("loginSign");
+								top.location.href = baseURL + "login.html";
+							}else{
+								//alert(succ.msg);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							//异常处理；
+							console.log(type);
+						}
+					});
+				}
+			},'div');
+		});
+		//版本控制
+		document.getElementById("version").addEventListener('tap', function() {			
+			mui.alert("已是最新版本","提示","确定",null,'div');
+			//mui.toast('登陆成功',{ duration:'long', type:'div' }) 
+		});
+		//ajax
+		mui.ajax(baseURL+'getUserMsg.do',{
+			data:{
+				account: account
+			},
+			dataType:'json',//服务器返回json格式数据
+			type:'get',//HTTP请求类型
+			success:function(su){
+				if(su.code === 0){
+					document.getElementById("pictureText").innerHTML = su.data.u_name;
+					if(su.data.u_identity == 1){
+						document.getElementById("status").innerHTML = "管理员";
+					}else{
+						document.getElementById("status").innerHTML = "普通用户";
+					}
+					document.getElementById("grade").innerHTML = su.data.u_star;
+				}else{
+					alert(su.msg);
+				}
+			},
+			error:function(xhr,type,errorThrown){
+				//异常处理；
+				console.log(type);
+			}
+		});
+	</script>
+</html>

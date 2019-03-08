@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/storeData.js"></script>
+		<style type="text/css">
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.pluginlogo {
+				width: 35px;
+				height: 30px;
+			}
+			
+			.mui-grid-9 a {
+				background: #fff;
+			}
+			
+			.mui-popup {
+				text-align: left !important;
+			}
+			
+			.mui-popup-title+.mui-popup-text {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div style="margin: 6px auto 2px 15px;">
+				<p>刷题模式</p>
+			</div>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img class="pluginlogo" src="../img/jia.png" />
+						<div class="mui-media-body">练习</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img class="pluginlogo" src="../img/library.png" />
+						<div class="mui-media-body">模拟</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#">
+						<img class="pluginlogo" src="../img/college.png" />
+						<div class="mui-media-body">考试</div>
+					</a>
+				</li>
+			</ul>
+			<div style="margin: 6px auto 2px  15px;">
+				<p>其他功能</p>
+			</div>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a>
+						<img class="pluginlogo" src="../img/video.png" />
+						<div class="mui-media-body">敬请期待...</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			//返回禁用
+			mui.back = function() {
+				var btnArray = ['否', '是'];
+				mui.confirm('是否退出应用', '神农刷题', btnArray, function(e) {
+					if(e.index == 1) {
+						removeAll();
+						localStorage.removeItem("loginSign");
+						plus.runtime.quit();
+					}
+				}, 'div')
+			}
+			var btnArray = ['取消', '确定'];
+			//获取所有语言
+			var html = '';
+			mui.ajax(baseURL + 'getAllLanguage.do', {
+				data: {
+
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				success: function(e) {
+					if(e.code === 0) {
+						for(var i = 0; i < e.data.length; i++) {
+							html += '<div class="mui-input-row mui-radio"><label>' +
+								e.data[i].l_full +
+								'</label>' +
+								'<input class="rds" name="radio1" value="' +
+								e.data[i].l_short +
+								'" type="radio"></div>';
+						}
+					} else {
+						//alert(e.msg);
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					console.log(type);
+				}
+			});
+			var rds = document.getElementsByClassName('rds');
+			//list点击跳转逻辑（代码待优化）
+			document.getElementsByClassName('mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3')[0].addEventListener('tap', function() {
+				mui.confirm(html, "请选择程序语言：", btnArray, function(e) {
+					if(e.index == 1) {
+						langu = getRadioRes("rds");
+//						window.location.href ="http://210.47.163.67:8080/brushing/exerciseHTML/exercise.html?langu=" + langu;
+						mui.openWindow("exercise.html?langu="+langu);
+					}
+				}, 'div');
+			});
+			document.getElementsByClassName('mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3')[1].addEventListener('tap', function() {
+				mui.confirm(html, "请选择程序语言：", btnArray, function(e) {
+					if(e.index == 1) {
+						langu = getRadioRes("rds");
+//						window.location.href = "http://210.47.163.67:8080/brushing/exerciseHTML/imitate.html?langu=" + langu;
+						mui.openWindow("imitate.html?langu="+langu);
+					}
+				}, 'div');
+			});
+			document.getElementsByClassName('mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3')[2].addEventListener('tap', function() {
+				mui.alert("<div style='text-align:center;font-size:17px;'>当前没有考试</div>", "提示", "确定", null, 'div');
+				/* mui.ajax(baseURL+'getExamMsg.do',{
+						data:{
+							
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'get',//HTTP请求类型
+						success:function(su){
+							if(su.code === 0){
+								storeData.examID = su.data.id;
+								mui.alert("\t出题人姓名："+su.data.u_name+"\t\n"
+											+"\t试题套数："+su.data.p_frequency+"\t\n"
+											+"\t编程语言："+su.data.p_language+"\t\n"
+											+"\t考试描述："+su.data.p_describe+"\t\n"
+											+"\t考试开始时间："+su.data.p_start+"\t",function(){
+												storeData.langu = su.data.p_language;
+				        						mui.openWindow("../exerciseHTML/exam.html");
+											});
+							}else{
+								alert(su.msg);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							alert("fail");
+							//异常处理；
+							console.log(type);
+						}
+					}); */
+			});
+		</script>
+	</body>
+
+</html>
